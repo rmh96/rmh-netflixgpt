@@ -1,7 +1,12 @@
 import React from "react";
+import Body from "./components/Body";
 
 const App = () => {
-  return <div className="text-2xl bg-red-400">App my appearance: </div>;
+  return (
+    <div className=" w-screen h-screen">
+      <Body />
+    </div>
+  );
 };
 
 export default App;
