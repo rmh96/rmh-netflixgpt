@@ -2,24 +2,35 @@
   "name": "rmh-netflixgpt",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "source": "/public/index.html",
   "scripts": {
-    "start": "parcel public/index.html",
-    "build": "parcel build public/index.html",
+    "start": "parcel",
+    "build": "parcel build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "keywords": [
+    "rmh",
+    "rmharish",
+    "harishrm",
+    "Netflix gpt",
+    "netflix",
+    "gpt",
+    "web app",
+    "react"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "firebase": "^10.10.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
     "parcel": "^2.12.0",
     "postcss": "^8.4.38",
     "process": "^0.11.10",
-    "react-router-dom": "^6.22.3",
     "tailwindcss": "^3.4.3"
   }
 }

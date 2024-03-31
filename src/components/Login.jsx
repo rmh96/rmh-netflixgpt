@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import { loginBgPage } from "../constants";
 import { validateEmailAndPassword } from "../utils/validateForm";
+import PwdChecker from "./PwdChecker";
 
 const Login = () => {
   const [isSignInForm, setSignInForm] = useState(true);
@@ -11,6 +12,8 @@ const Login = () => {
     email: null,
     password: null,
   });
+  const [pwdChecker, setPwdChecker] = useState(false);
+  const [pwdValue, setPwdValue] = useState("");
   const toggleFormBehavior = () => {
     email.current.value = "";
     password.current.value = "";
@@ -19,7 +22,6 @@ const Login = () => {
   };
 
   const submitForm = () => {
-    console.log(email.current.value, password.current.value);
     const checkVal = validateEmailAndPassword(
       email.current.value,
       password.current.value
@@ -27,6 +29,32 @@ const Login = () => {
     console.log(checkVal);
     setErrMessage(checkVal);
   };
+
+  const passwordChanged = () => {
+    password.current && setPwdValue(password.current.value);
+  };
+
+  useEffect(() => {
+    const passwordEle = password.current;
+    if (passwordEle) {
+      passwordEle.addEventListener("focus", (e) => {
+        setPwdChecker(true);
+      });
+      passwordEle.addEventListener("blur", (e) => {
+        setPwdChecker(false);
+      });
+    }
+    return () => {
+      if (passwordEle) {
+        passwordEle.removeEventListener("focus", (e) => {
+          setPwdChecker(true);
+        });
+        passwordEle.removeEventListener("blur", (e) => {
+          setPwdChecker(false);
+        });
+      }
+    };
+  }, []);
 
   return (
     <div
@@ -51,7 +79,7 @@ const Login = () => {
         <span className="text-white font-bold text-4xl w-full">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </span>
-        <div className="flex flex-col space-y-5 w-full">
+        <div className="flex flex-col space-y-5 w-full relative">
           <input
             ref={email}
             type="text"
@@ -72,10 +100,16 @@ const Login = () => {
           ) : null}
           <input
             ref={password}
+            autoComplete="false"
             type="password"
+            value={pwdValue}
             placeholder="Password"
-            className=" pl-5 py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
+            onChange={passwordChanged}
+            className="pl-5 py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
           />
+          {!isSignInForm && pwdChecker ? (
+            <PwdChecker password={pwdValue} />
+          ) : null}
           {errMessage.password && (
             <p className=" text-red-600 text-ls font-semibold">
               {errMessage.password}
