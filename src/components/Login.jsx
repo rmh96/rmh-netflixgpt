@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
-import { LOGIN_BG_IMG } from "../constants";
+import { LOGIN_BG_IMG } from "../utils/constants";
 import { validateEmailAndPassword } from "../utils/validateForm";
 import PwdChecker from "./PwdChecker";
 import {
