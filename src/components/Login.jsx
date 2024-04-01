@@ -7,14 +7,19 @@ import PwdChecker from "./PwdChecker";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isSignInForm, setSignInForm] = useState(true);
   const email = useRef(null);
   const password = useRef(null);
+  const displayName = useRef(null);
   const [errMessage, setErrMessage] = useState({
     email: null,
     password: null,
@@ -25,6 +30,7 @@ const Login = () => {
   const toggleFormBehavior = () => {
     email.current.value = "";
     password.current.value = "";
+
     setPwdValue("");
     setErrMessage({});
     setSignInForm(!isSignInForm);
@@ -49,15 +55,29 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log("User--", user);
-          navigate("/browse");
-          // ...
+          updateProfile(auth.currentUser, {
+            displayName: displayName.current.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              setErrMessage({ ...errMessage, loginErr: error.message });
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode + " - " + errorMessage);
-          // ..
+          setErrMessage({ ...errMessage, loginErr: error.message });
         });
     } else {
       //Sign In logic
@@ -69,14 +89,13 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log("user--", user);
           navigate("/browse");
           // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode + " - " + errorMessage);
+          setErrMessage({ ...errMessage, loginErr: error.message });
         });
     }
   };
@@ -144,6 +163,7 @@ const Login = () => {
           )}
           {!isSignInForm ? (
             <input
+              ref={displayName}
               type="text"
               placeholder="Full Name"
               className=" pl-5 py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
@@ -167,6 +187,11 @@ const Login = () => {
             </p>
           )}
         </div>
+        {errMessage.loginErr && (
+          <p className=" text-red-600 text-ls font-semibold">
+            {errMessage.loginErr}
+          </p>
+        )}
         <button
           type="submit"
           className="p-2 w-full bg-red-600 text-white text-center"

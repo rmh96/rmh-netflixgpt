@@ -22,13 +22,12 @@ const Body = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      console.log("AuthChanged-", user);
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
-        //navigate("/browse");
       } else {
         dispatch(removeUser());
-        //navigate("/login");
       }
     });
   }, []);
