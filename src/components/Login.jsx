@@ -1,22 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import { loginBgPage } from "../constants";
 import { validateEmailAndPassword } from "../utils/validateForm";
 import PwdChecker from "./PwdChecker";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [isSignInForm, setSignInForm] = useState(true);
   const email = useRef(null);
   const password = useRef(null);
   const [errMessage, setErrMessage] = useState({
     email: null,
     password: null,
+    loginErr: null,
   });
   const [pwdChecker, setPwdChecker] = useState(false);
   const [pwdValue, setPwdValue] = useState("");
   const toggleFormBehavior = () => {
     email.current.value = "";
     password.current.value = "";
+    setPwdValue("");
     setErrMessage({});
     setSignInForm(!isSignInForm);
   };
@@ -26,8 +35,50 @@ const Login = () => {
       email.current.value,
       password.current.value
     );
-    console.log(checkVal);
-    setErrMessage(checkVal);
+    setErrMessage({ errMessage, ...checkVal });
+    if (checkVal.email || checkVal.password) return;
+
+    // Sign in / Sign up logic
+    //Sign UP logic
+    if (!isSignInForm) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log("User--", user);
+          navigate("/browse");
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + " - " + errorMessage);
+          // ..
+        });
+    } else {
+      //Sign In logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log("user--", user);
+          navigate("/browse");
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + " - " + errorMessage);
+        });
+    }
   };
 
   const passwordChanged = () => {
@@ -65,12 +116,12 @@ const Login = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className="h-full w-full flex justify-center items-center relative"
+      className="w-screen h-screen flex justify-center items-center relative"
     >
       <div className="absolute bg-black opacity-55 w-full h-full z-0"></div>
       <Header />
       <form
-        className="z-10 w-1/4 h-3/5  flex flex-col items-center px-12 pt-10 space-y-10 bg-black bg-opacity-60"
+        className="z-10 w-1/4 min-h-max flex flex-col items-center px-12 py-10 space-y-10 bg-black bg-opacity-60"
         onSubmit={(e) => {
           e.preventDefault();
           submitForm();
