@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Header from "./Header";
-import { loginBgPage } from "../constants";
+import { LOGIN_BG_IMG } from "../constants";
 import { validateEmailAndPassword } from "../utils/validateForm";
 import PwdChecker from "./PwdChecker";
 import {
@@ -15,7 +14,6 @@ import { addUser } from "../redux/userSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [isSignInForm, setSignInForm] = useState(true);
   const email = useRef(null);
   const password = useRef(null);
@@ -68,7 +66,6 @@ const Login = () => {
                   displayName: displayName,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setErrMessage({ ...errMessage, loginErr: error.message });
@@ -89,7 +86,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -130,7 +126,7 @@ const Login = () => {
     <div
       style={{
         backgroundImage: `url(
-          ${loginBgPage}
+          ${LOGIN_BG_IMG}
         )`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",

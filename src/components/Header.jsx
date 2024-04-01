@@ -1,33 +1,48 @@
-import React, { useState } from "react";
-import { signOut } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, removeUser } from "../redux/userSlice";
+import { LOGO } from "../constants";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  console.log("Headeruser-", user);
   const navigate = useNavigate();
   const [openSignOutBox, setSignOutBox] = useState(false);
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
+      .then(() => {})
       .catch((error) => {
         console.log("Error while SignOut - ", error);
         //Need to create a Error Page
       });
   };
 
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("AuthChanged-", user);
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+
+    //Unsubscribe the onAuthStateChanged action callback
+    return () => {
+      unSubscribe();
+    };
+  }, []);
+
   return (
     <div className="absolute w-full top-0 left-0 h-28 px-10 py-2 bg-gradient-to-b from-black flex items-center justify-between">
-      <img
-        className=" h-18 w-52"
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        alt="app-logo"
-      />
+      <img className=" h-18 w-52" src={LOGO} alt="app-logo" />
       {user ? (
         <div className="relative flex space-x-2 items-center cursor-pointer transition-all">
           <span className="text-white font-semibold mx-2">
