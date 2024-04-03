@@ -29,22 +29,9 @@ const AppRouter = () => {
   );
 };
 
-const ErrorPage = () => {
-  return (
-    <div className="w-screen h-screen">
-      <Header />
-      <div className="h-full w-full flex justify-center items-center ">
-        <div className="text-red-600 text-4xl">404 Not Found</div>
-        <div>Go to Login Page</div>
-      </div>
-    </div>
-  );
-};
-
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    errorElement: <ErrorPage />,
     element: <AppRouter />,
   },
 ]);
