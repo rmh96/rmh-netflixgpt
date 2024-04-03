@@ -38,6 +38,7 @@ const Header = () => {
 
     //Unsubscribe the onAuthStateChanged action callback
     return () => {
+      console.log("Auth unsubscribed");
       unSubscribe();
     };
   }, []);
