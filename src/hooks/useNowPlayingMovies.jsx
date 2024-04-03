@@ -8,10 +8,14 @@ const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchNowPlayingMoviesList = async () => {
-      const data = await fetch(apiUrls.nowPlayingMovies, MOVIE_API_OPTIONS);
-      const res = await data.json();
-      if (res !== undefined) {
-        dispatch(addNowPlayingMovies(res.results));
+      try {
+        const data = await fetch(apiUrls.nowPlayingMovies, MOVIE_API_OPTIONS);
+        const res = await data.json();
+        if (res !== undefined) {
+          dispatch(addNowPlayingMovies(res.results));
+        }
+      } catch (e) {
+        console.log(e.response);
       }
     };
     fetchNowPlayingMoviesList();

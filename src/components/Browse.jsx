@@ -4,6 +4,7 @@ import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 
 const Browse = () => {
   useNowPlayingMovies();
+  console.log("Hello");
   return (
     <div>
       <Header />

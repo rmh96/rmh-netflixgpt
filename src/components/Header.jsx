@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../redux/userSlice";
 import { LOGO } from "../utils/constants";
+import { disableProfileToBrowseFlag } from "../redux/profileSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const profileSelected = useSelector((store) => store.profile.profileSelected);
   const navigate = useNavigate();
   const [openSignOutBox, setSignOutBox] = useState(false);
 
@@ -26,10 +28,11 @@ const Header = () => {
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
-        navigate("/browse");
+        profileSelected ? navigate("/browse") : navigate("/profile");
       } else {
         dispatch(removeUser());
         navigate("/");
+        dispatch(disableProfileToBrowseFlag(false));
       }
     });
 
