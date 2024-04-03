@@ -13,6 +13,34 @@
   }
 }
 
+@keyframes goUp {
+  0% {
+    opacity: 0;
+    transform: translateY(150%);
+  }
+  100% {
+    opacity: 100;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes showIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-go-up {
+  animation: goUp 0.7s linear forwards;
+}
+
+.animate-show-in {
+  animation: showIn 0.7s linear forwards;
 }
