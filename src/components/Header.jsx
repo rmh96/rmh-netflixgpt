@@ -25,6 +25,7 @@ const Header = () => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("user from authchange-", user);
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
@@ -36,7 +37,7 @@ const Header = () => {
       }
     });
 
-    //Unsubscribe the onAuthStateChanged action callback
+    //Unsubscribe the onAuthStateChanged action callback on unmount
     return () => {
       console.log("Auth unsubscribed");
       unSubscribe();
