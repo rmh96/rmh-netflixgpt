@@ -1,8 +1,4 @@
-import React, { useEffect } from "react";
-import { apiUrls } from "../utils/ApiUrls";
-import { MOVIE_API_OPTIONS } from "../utils/constants";
-import { useDispatch, useSelector } from "react-redux";
-import { setVideoOfFirstMovie } from "../redux/movieSlice";
+import React from "react";
 import useFirstMovieVideo from "../hooks/useFirstMovieVideo";
 
 const BackGroundVideo = ({ id }) => {
