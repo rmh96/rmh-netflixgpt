@@ -30,3 +30,5 @@ export const PROFILE_GATE_DATA = [
     name: "Jack",
   },
 ];
+
+export const MOVIE_IMG_CDN = "https://image.tmdb.org/t/p/w500";
