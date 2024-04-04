@@ -1,5 +1,6 @@
 import React from "react";
 import useFirstMovieVideo from "../hooks/useFirstMovieVideo";
+import { useSelector } from "react-redux";
 
 const BackGroundVideo = ({ id }) => {
   useFirstMovieVideo(id);
