@@ -9,10 +9,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../redux/userSlice";
+import { LANGUAGE_CONSTANTS } from "../utils/languageConstant";
 
 const Login = () => {
+  const lang = useSelector((store) => store.appConfig.lang);
   const dispatch = useDispatch();
   const [isSignInForm, setSignInForm] = useState(true);
   const email = useRef(null);
@@ -55,7 +57,6 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(auth.currentUser, {
             displayName: displayName.current.value,
-            photoURL: "https://example.com/jane-q-user/profile.jpg",
           })
             .then(() => {
               const { uid, email, displayName } = auth.currentUser;
@@ -143,25 +144,27 @@ const Login = () => {
         }}
       >
         <span className="text-white font-bold text-4xl w-full">
-          {isSignInForm ? "Sign In" : "Sign Up"}
+          {isSignInForm
+            ? LANGUAGE_CONSTANTS[lang].signIn
+            : LANGUAGE_CONSTANTS[lang].signUp}
         </span>
         <div className="flex flex-col space-y-5 w-full relative">
           <input
             ref={email}
-            type="text"
-            placeholder="Email or Phone Number"
+            type="email"
+            placeholder={LANGUAGE_CONSTANTS[lang].emailPlaceHd}
             className=" pl-5 py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
           />
           {errMessage.email && (
             <p className=" text-red-600 text-ls font-semibold">
-              {errMessage.email}
+              {LANGUAGE_CONSTANTS[lang].emailErr}
             </p>
           )}
           {!isSignInForm ? (
             <input
               ref={displayName}
               type="text"
-              placeholder="Full Name"
+              placeholder={LANGUAGE_CONSTANTS[lang].fullNamePlaceHd}
               className=" pl-5 py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
             />
           ) : null}
@@ -170,7 +173,7 @@ const Login = () => {
             autoComplete="false"
             type="password"
             value={pwdValue}
-            placeholder="Password"
+            placeholder={LANGUAGE_CONSTANTS[lang].pwdPlaceHd}
             onChange={passwordChanged}
             className="pl-5 py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
           />
@@ -179,7 +182,7 @@ const Login = () => {
           ) : null}
           {errMessage.password && (
             <p className=" text-red-600 text-ls font-semibold">
-              {errMessage.password}
+              {LANGUAGE_CONSTANTS[lang].pwdErr}
             </p>
           )}
         </div>
@@ -192,15 +195,17 @@ const Login = () => {
           type="submit"
           className="p-2 w-full bg-red-600 text-white text-center"
         >
-          {isSignInForm ? "Sign In" : "Sign Up"}
+          {isSignInForm
+            ? LANGUAGE_CONSTANTS[lang].signIn
+            : LANGUAGE_CONSTANTS[lang].signUp}
         </button>
         <p
           className="text-white p-2 w-full cursor-pointer"
           onClick={toggleFormBehavior}
         >
           {isSignInForm
-            ? "New to Netflix? Sign Up Now"
-            : "Already Registered? Sign Up Now"}
+            ? LANGUAGE_CONSTANTS[lang].signInPageTxt
+            : LANGUAGE_CONSTANTS[lang].signUpPageTxt}
         </p>
       </form>
     </div>

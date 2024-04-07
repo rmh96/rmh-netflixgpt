@@ -4,14 +4,23 @@ import useFetchMovies from "../hooks/useFetchMovies";
 
 import MovieListContainer from "./MovieListContainer";
 import MovieBannerContainer from "./MovieBannerContainer";
+import { useSelector } from "react-redux";
+import GptSearchPage from "./GptSearchPage";
 
 const Browse = () => {
+  const gptSearchToggle = useSelector((store) => store.search.gptSearchToggle);
   useFetchMovies();
   return (
     <div className="h-screen w-screen">
       <Header />
-      <MovieBannerContainer />
-      <MovieListContainer />
+      {gptSearchToggle ? (
+        <GptSearchPage />
+      ) : (
+        <>
+          <MovieBannerContainer />
+          <MovieListContainer />
+        </>
+      )}
     </div>
   );
 };

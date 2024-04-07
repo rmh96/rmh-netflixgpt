@@ -19,7 +19,7 @@
     "web app",
     "react"
   ],
-  "author": "",
+  "author": "Harish RM",
   "license": "ISC",
   "dependencies": {
     "firebase": "^10.10.0",

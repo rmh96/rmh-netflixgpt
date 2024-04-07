@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { checkPwdFormat } from "../utils/validateForm";
+import { useSelector } from "react-redux";
+import { LANGUAGE_CONSTANTS } from "../utils/languageConstant";
 
 const PwdChecker = ({ password }) => {
+  const lang = useSelector((store) => store.appConfig.lang);
   const [checkVal, setCheckVal] = useState({
     eightCharacters: true,
     upperCase: false,
@@ -24,7 +27,7 @@ const PwdChecker = ({ password }) => {
               checkVal.eightCharacters ? "bg-green-600" : ""
             }`}
           ></div>
-          <div>Should have atleast 8 characters</div>
+          <div>{LANGUAGE_CONSTANTS[lang].pwdCheck1}</div>
         </li>
         <li className="flex space-x-2 pb-1">
           <div
@@ -32,7 +35,7 @@ const PwdChecker = ({ password }) => {
               checkVal.upperCase ? "bg-green-600" : ""
             }`}
           ></div>
-          <div>Use atleast one upper case</div>
+          <div>{LANGUAGE_CONSTANTS[lang].pwdCheck2}</div>
         </li>
         <li className="flex space-x-2 pb-1">
           <div
@@ -40,7 +43,7 @@ const PwdChecker = ({ password }) => {
               checkVal.lowerCase ? "bg-green-600" : ""
             }`}
           ></div>
-          <div>Use atleast one lower case </div>
+          <div>{LANGUAGE_CONSTANTS[lang].pwdCheck3}</div>
         </li>
         <li className="flex space-x-2 pb-1">
           <div
@@ -48,7 +51,7 @@ const PwdChecker = ({ password }) => {
               checkVal.specialCharacter ? "bg-green-600" : ""
             }`}
           ></div>
-          <div>Use one special character</div>
+          <div>{LANGUAGE_CONSTANTS[lang].pwdCheck4}</div>
         </li>
         <li className="flex space-x-2 pb-1">
           <div
@@ -56,7 +59,7 @@ const PwdChecker = ({ password }) => {
               checkVal.number ? "bg-green-600" : ""
             }`}
           ></div>
-          <div>Use atleast one number</div>
+          <div>{LANGUAGE_CONSTANTS[lang].pwdCheck5}</div>
         </li>
       </ul>
     </div>

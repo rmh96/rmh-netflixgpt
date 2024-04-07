@@ -33,6 +33,15 @@
   }
 }
 
+@keyframes searchGoUp {
+  0% {
+    margin-top: 24%;
+  }
+  100% {
+    margin-top: 10rem;
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out forwards;
 }
@@ -43,4 +52,8 @@
 
 .animate-show-in {
   animation: showIn 0.7s linear forwards;
+}
+
+.searchBarGoUp {
+  animation: searchGoUp 0.7s linear forwards;
 }

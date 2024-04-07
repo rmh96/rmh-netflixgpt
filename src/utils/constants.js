@@ -32,3 +32,21 @@ export const PROFILE_GATE_DATA = [
 ];
 
 export const MOVIE_IMG_CDN = "https://image.tmdb.org/t/p/w500";
+
+export const USER_ICON =
+  "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp";
+
+export const SUPPORTED_LANGUAGES = [
+  {
+    identifier: "en",
+    name: "English",
+  },
+  {
+    identifier: "tamil",
+    name: "Tamil",
+  },
+  {
+    identifier: "hindi",
+    name: "Hindi",
+  },
+];
