@@ -19,6 +19,7 @@ const Header = () => {
   const [openSignOutBox, setSignOutBox] = useState(false);
 
   const handleSignOut = () => {
+    dispatch(setGptSearch(false));
     signOut(auth)
       .then(() => {})
       .catch((error) => {
@@ -106,7 +107,7 @@ const Header = () => {
               onMouseLeave={() => setSignOutBox(false)}
               onClick={handleSignOut}
             >
-              <span>Sign Out</span>
+              <span>{LANGUAGE_CONSTANTS[lang].signOut}</span>
             </div>
           ) : null}
         </div>

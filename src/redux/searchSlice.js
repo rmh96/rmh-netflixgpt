@@ -9,8 +9,10 @@ const searchReducers = createSlice({
     errorDurningSearch: false,
   },
   reducers: {
-    setGptSearch: (state) => {
-      state.gptSearchToggle = !state.gptSearchToggle;
+    setGptSearch: (state, action) => {
+      state.gptSearchToggle = action.payload
+        ? action.payload
+        : !state.gptSearchToggle;
       state.movieNames = null;
       state.movieList = null;
       state.errorDurningSearch = false;

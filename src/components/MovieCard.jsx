@@ -1,7 +1,11 @@
 import React from "react";
+import { MOVIE_IMG_CDN } from "../utils/constants";
 
 const MovieCard = ({ imgSrc }) => {
-  return <img className="w-56 pr-5" src={imgSrc} alt="posterImg" />;
+  if (!imgSrc) return;
+  return (
+    <img className="w-56 pr-5" src={MOVIE_IMG_CDN + imgSrc} alt="posterImg" />
+  );
 };
 
 export default MovieCard;
