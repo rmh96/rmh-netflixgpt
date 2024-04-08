@@ -19,7 +19,9 @@ export const LANGUAGE_CONSTANTS = {
     pwdErr: "Password not valid",
     profileSlogan: "Who's Watching?",
     manageProfile: "Manage Profiles",
+    doneProfile: "Done",
     addProfile: "Add Profile",
+    searchError: "Something Went Wrong, Please Try Again.",
   },
   tamil: {
     gptSearchButton: "தேடு",
@@ -42,7 +44,9 @@ export const LANGUAGE_CONSTANTS = {
     pwdErr: "கடவுச்சொல் செல்லாது",
     profileSlogan: "யார் பார்க்கிறார்கள்?",
     manageProfile: "சுயவிவரங்களை நிர்வகிக்கவும்",
+    doneProfile: "முடிந்தது",
     addProfile: "சுயவிவரத்தை உருவாக்கவும்",
+    searchError: "ஏதோ தவறாகிவிட்டது, மீண்டும் முயற்சிக்கவும்.",
   },
   hindi: {
     gptSearchButton: "खोज",
@@ -64,6 +68,8 @@ export const LANGUAGE_CONSTANTS = {
     pwdErr: "पासवर्ड मान्य नहीं है",
     profileSlogan: "कौन देख रहा है?",
     manageProfile: "प्रोफ़ाइल प्रबंधित करें",
+    doneProfile: "हो गया",
     addProfile: "प्रोफ़ाइल जोड़ें",
+    searchError: "कुछ गड़बड़ हुई है। कृपया दोबारा प्रयास करें।",
   },
 };
