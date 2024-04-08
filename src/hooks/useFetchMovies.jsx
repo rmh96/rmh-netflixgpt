@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { MOVIE_API_OPTIONS } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addNowPlayingMovies,
   addPopularMovies,
@@ -10,6 +10,9 @@ import {
 import { apiUrls } from "../utils/ApiUrls";
 
 const useFetchMovies = () => {
+  const nowPlayingMovies = useSelector(
+    (store) => store.movies.nowPlayingMovies
+  );
   const dispatch = useDispatch();
   const fetchNowPlayingMoviesList = async () => {
     try {
@@ -56,10 +59,12 @@ const useFetchMovies = () => {
     }
   };
   useEffect(() => {
-    fetchNowPlayingMoviesList();
-    fetchPopularMoviesList();
-    fetchMyListMoviesList();
-    fetchUpcomingMoviesList();
+    if (!nowPlayingMovies) {
+      fetchNowPlayingMoviesList();
+      fetchPopularMoviesList();
+      fetchMyListMoviesList();
+      fetchUpcomingMoviesList();
+    }
   }, []);
 };
 

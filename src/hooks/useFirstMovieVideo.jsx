@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { apiUrls } from "../utils/ApiUrls";
 import { setVideoOfFirstMovie } from "../redux/movieSlice";
 import { MOVIE_API_OPTIONS } from "../utils/constants";
 
 const useFirstMovieVideo = (id) => {
+  const videoOfFirstMovie = useSelector(
+    (store) => store.movies.videoOfFirstMovie
+  );
   const dispatch = useDispatch();
   const fetchVideo = async () => {
     try {
@@ -24,7 +27,7 @@ const useFirstMovieVideo = (id) => {
     }
   };
   useEffect(() => {
-    fetchVideo();
+    !videoOfFirstMovie && fetchVideo();
   }, []);
 };
 
