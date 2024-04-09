@@ -45,7 +45,7 @@ const GptSearchSection = () => {
   };
 
   return (
-    <div className="bg-black p-4 w-1/2 z-10 ml-20 searchBarGoUp">
+    <div className="bg-black p-2 w-full md:p-3 md:w-1/2 z-10 md:ml-20 searchBarGoUpMob searchBarGoUp rounded-3xl">
       <form
         className="grid grid-flow-col"
         onSubmit={(e) => {
@@ -55,13 +55,13 @@ const GptSearchSection = () => {
       >
         <input
           ref={gptSearchValue}
-          className="py-3 pl-2 col-span-8 font-semibold rounded-l-2xl outline-none"
+          className="py-3 pl-2 col-span-9 md:col-span-8 font-semibold rounded-l-2xl outline-none text-[13px] md:text-base"
           type="text"
           placeholder={LANGUAGE_CONSTANTS[lang].gptSearchPlaceHolder}
         />
         <button
           type="submit"
-          className="p-3 text-white bg-red-700 col-span-3 rounded-r-2xl font-semibold"
+          className="p-3 text-white bg-red-700 col-span-2 md:col-span-3 rounded-r-2xl font-semibold text-[13px] md:text-base"
         >
           {LANGUAGE_CONSTANTS[lang].gptSearchButton}
         </button>

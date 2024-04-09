@@ -3,6 +3,7 @@ export const LANGUAGE_CONSTANTS = {
     gptSearchButton: "Search",
     gptSearchPlaceHolder: "What movies do you want to watch?",
     gptSearchNavButton: "GPT Search",
+    homePage: "Home Page",
     signIn: "Sign In",
     signUp: "Sign Up",
     signOut: "Sign Out",
@@ -29,6 +30,7 @@ export const LANGUAGE_CONSTANTS = {
     gptSearchPlaceHolder:
       "நீங்கள் என்ன திரைப்படங்களைப் பார்க்க விரும்புகிறீர்கள்?",
     gptSearchNavButton: "GPT தேடு",
+    homePage: "முகப்பு பக்கம்",
     signIn: "உள்நுழைக",
     signUp: "பதிவு செய்",
     signOut: "வெளியேறு",
@@ -54,6 +56,7 @@ export const LANGUAGE_CONSTANTS = {
     gptSearchButton: "खोज",
     gptSearchPlaceHolder: "आप कौन सी फिल्में देखना चाहते हैं?",
     gptSearchNavButton: "GPT खोज",
+    homePage: "होम पेज",
     signIn: "दाखिल करना",
     signUp: "साइन अप करें",
     signOut: "साइन आउट",

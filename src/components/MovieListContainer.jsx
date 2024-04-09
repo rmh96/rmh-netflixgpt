@@ -7,7 +7,7 @@ const MovieListContainer = () => {
   if (!movies) return;
   return (
     <div className="bg-black">
-      <div className="z-20 relative -mt-72">
+      <div className="z-20 relative mt-0 md:-mt-72">
         <MovieList title={"Matched to You"} movies={movies?.nowPlayingMovies} />
         <MovieList title={"US Drama"} movies={movies?.popularMovies} />
         <MovieList title={"My List"} movies={movies?.myListMovies} />

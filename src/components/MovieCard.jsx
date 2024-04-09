@@ -4,7 +4,11 @@ import { MOVIE_IMG_CDN } from "../utils/constants";
 const MovieCard = ({ imgSrc }) => {
   if (!imgSrc) return;
   return (
-    <img className="w-56 pr-5" src={MOVIE_IMG_CDN + imgSrc} alt="posterImg" />
+    <img
+      className="w-44 md:w-56 pr-5"
+      src={MOVIE_IMG_CDN + imgSrc}
+      alt="posterImg"
+    />
   );
 };
 

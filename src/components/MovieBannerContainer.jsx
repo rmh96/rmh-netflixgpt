@@ -9,7 +9,7 @@ const MovieBannerContainer = () => {
 
   const { id, title, overview } = movieDetails[0];
   return (
-    <div>
+    <div className="pt-36 bg-black md:pt-0 md:bg-none">
       <VideoTitle title={title} overview={overview} />
       <BackGroundVideo id={id} />
     </div>
