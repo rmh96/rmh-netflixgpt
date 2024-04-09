@@ -137,7 +137,7 @@ const Login = () => {
       <div className="absolute bg-black opacity-50 w-full h-full z-0"></div>
       <Header />
       <form
-        className="z-10 w-1/4 min-h-max flex flex-col items-center px-12 py-10 space-y-10 bg-black bg-opacity-75 rounded-lg"
+        className="z-10 w-[95%] md:w-1/4 min-h-max flex flex-col items-center px-12 py-10 space-y-10 bg-black bg-opacity-75 rounded-lg"
         onSubmit={(e) => {
           e.preventDefault();
           submitForm();

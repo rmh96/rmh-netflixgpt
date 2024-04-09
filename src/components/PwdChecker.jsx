@@ -19,9 +19,9 @@ const PwdChecker = ({ password }) => {
   }, [password]);
 
   return (
-    <div className="absolute -right-[330px] -bottom-20 h-44 p-8 bg-black bg-opacity-60">
+    <div className="md:absolute md:-right-[330px] md:-bottom-20 h-48 md:h-44 md:p-8 bg-black bg-opacity-60">
       <ul className="text-white">
-        <li className="flex space-x-2 pb-1">
+        <li className="flex items-center space-x-2 ">
           <div
             className={`w-4 h-4 border-2 border-white rounded-full ${
               checkVal.eightCharacters ? "bg-green-600" : ""
@@ -29,7 +29,7 @@ const PwdChecker = ({ password }) => {
           ></div>
           <div>{LANGUAGE_CONSTANTS[lang].pwdCheck1}</div>
         </li>
-        <li className="flex space-x-2 pb-1">
+        <li className="flex items-center space-x-2 ">
           <div
             className={`w-4 h-4 border-2 border-white rounded-full ${
               checkVal.upperCase ? "bg-green-600" : ""
@@ -37,7 +37,7 @@ const PwdChecker = ({ password }) => {
           ></div>
           <div>{LANGUAGE_CONSTANTS[lang].pwdCheck2}</div>
         </li>
-        <li className="flex space-x-2 pb-1">
+        <li className="flex items-center space-x-2">
           <div
             className={`w-4 h-4 border-2 border-white rounded-full ${
               checkVal.lowerCase ? "bg-green-600" : ""
@@ -45,7 +45,7 @@ const PwdChecker = ({ password }) => {
           ></div>
           <div>{LANGUAGE_CONSTANTS[lang].pwdCheck3}</div>
         </li>
-        <li className="flex space-x-2 pb-1">
+        <li className="flex items-center space-x-2">
           <div
             className={`w-4 h-4 border-2 border-white rounded-full ${
               checkVal.specialCharacter ? "bg-green-600" : ""
@@ -53,7 +53,7 @@ const PwdChecker = ({ password }) => {
           ></div>
           <div>{LANGUAGE_CONSTANTS[lang].pwdCheck4}</div>
         </li>
-        <li className="flex space-x-2 pb-1">
+        <li className="flex items-center space-x-2">
           <div
             className={`w-4 h-4 border-2 border-white rounded-full ${
               checkVal.number ? "bg-green-600" : ""

@@ -68,7 +68,7 @@ const Header = () => {
             ? "md:right-96"
             : user && !profileSelected
             ? "md:right-44"
-            : "right-10"
+            : "md:right-10"
         }`}
         value={lang}
         onChange={handleLangChange}
