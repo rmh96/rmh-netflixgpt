@@ -137,23 +137,23 @@ const Login = () => {
       <div className="absolute bg-black opacity-50 w-full h-full z-0"></div>
       <Header />
       <form
-        className="z-10 w-[95%] md:w-1/4 min-h-max flex flex-col items-center px-12 py-10 space-y-10 bg-black bg-opacity-75 rounded-lg"
+        className="z-10 w-[95%] md:w-1/4 min-h-max flex flex-col items-center px-12 py-10 mt-10 space-y-10 bg-black bg-opacity-75 rounded-lg"
         onSubmit={(e) => {
           e.preventDefault();
           submitForm();
         }}
       >
-        <span className="text-white font-bold text-4xl w-full">
+        <span className="text-white font-bold text-3xl md:text-4xl w-full">
           {isSignInForm
             ? LANGUAGE_CONSTANTS[lang].signIn
             : LANGUAGE_CONSTANTS[lang].signUp}
         </span>
-        <div className="flex flex-col space-y-5 w-full relative">
+        <div className="flex flex-col space-y-3 md:space-y-5 w-full relative">
           <input
             ref={email}
             type="email"
             placeholder={LANGUAGE_CONSTANTS[lang].emailPlaceHd}
-            className=" pl-5 py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
+            className=" pl-5 py-2 md:py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
           />
           {errMessage.email && (
             <p className=" text-red-600 text-ls font-semibold">
@@ -165,7 +165,7 @@ const Login = () => {
               ref={displayName}
               type="text"
               placeholder={LANGUAGE_CONSTANTS[lang].fullNamePlaceHd}
-              className=" pl-5 py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
+              className=" pl-5 py-2 md:py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
             />
           ) : null}
           <input
@@ -175,7 +175,7 @@ const Login = () => {
             value={pwdValue}
             placeholder={LANGUAGE_CONSTANTS[lang].pwdPlaceHd}
             onChange={passwordChanged}
-            className="pl-5 py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
+            className="pl-5 py-2 md:py-4 w-full border border-white border-opacity-20 bg-white bg-opacity-10 outline-white text-white"
           />
           {!isSignInForm && pwdChecker ? (
             <PwdChecker password={pwdValue} />

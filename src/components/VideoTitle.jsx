@@ -6,7 +6,7 @@ const VideoTitle = ({ title, overview }) => {
       <div className="text-lg md:text-5xl font-bold animate-go-up text-white drop-shadow-lg">
         {title}
       </div>
-      <div className="w-[80%] md:w-[40%] md:animate-show-in line-clamp-2 text-white drop-shadow-lg">
+      <div className="w-[80%] md:w-[40%] text-[12px] md:text-lg md:animate-show-in line-clamp-2 text-white drop-shadow-lg">
         {overview}
       </div>
       <div className="flex space-x-10 justify-start items-center animate-show-in">

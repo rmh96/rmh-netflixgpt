@@ -17,7 +17,7 @@ const ProfileSection = ({ img, name }) => {
       }}
     >
       <img
-        className="w-36 md:w-52 h-52 border-4 border-black group-hover:border-white"
+        className="w-24 h-24 md:h-52 md:w-52 border-4 border-black group-hover:border-white"
         src={img}
         alt="profile-pic"
       />

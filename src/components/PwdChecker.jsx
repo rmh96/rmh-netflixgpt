@@ -19,11 +19,15 @@ const PwdChecker = ({ password }) => {
   }, [password]);
 
   return (
-    <div className="md:absolute md:-right-[330px] md:-bottom-20 h-48 md:h-44 md:p-8 bg-black bg-opacity-60">
+    <div
+      className={`md:absolute  md:-bottom-20  text-[12px] md:text-base md:h-40 md:p-4 bg-black bg-opacity-60 ${
+        lang === "tamil" ? "md:-right-[455px]" : "md:-right-[310px]"
+      }`}
+    >
       <ul className="text-white">
-        <li className="flex items-center space-x-2 ">
+        <li className="flex items-center space-x-2">
           <div
-            className={`w-4 h-4 border-2 border-white rounded-full ${
+            className={`w-3 h-3 md:w-4 md:h-4 border-2 border-white rounded-full ${
               checkVal.eightCharacters ? "bg-green-600" : ""
             }`}
           ></div>
@@ -31,7 +35,7 @@ const PwdChecker = ({ password }) => {
         </li>
         <li className="flex items-center space-x-2 ">
           <div
-            className={`w-4 h-4 border-2 border-white rounded-full ${
+            className={`w-3 h-3 md:w-4 md:h-4 border-2 border-white rounded-full ${
               checkVal.upperCase ? "bg-green-600" : ""
             }`}
           ></div>
@@ -39,7 +43,7 @@ const PwdChecker = ({ password }) => {
         </li>
         <li className="flex items-center space-x-2">
           <div
-            className={`w-4 h-4 border-2 border-white rounded-full ${
+            className={`w-3 h-3 md:w-4 md:h-4 border-2 border-white rounded-full ${
               checkVal.lowerCase ? "bg-green-600" : ""
             }`}
           ></div>
@@ -47,7 +51,7 @@ const PwdChecker = ({ password }) => {
         </li>
         <li className="flex items-center space-x-2">
           <div
-            className={`w-4 h-4 border-2 border-white rounded-full ${
+            className={`w-3 h-3 md:w-4 md:h-4 border-2 border-white rounded-full ${
               checkVal.specialCharacter ? "bg-green-600" : ""
             }`}
           ></div>
@@ -55,7 +59,7 @@ const PwdChecker = ({ password }) => {
         </li>
         <li className="flex items-center space-x-2">
           <div
-            className={`w-4 h-4 border-2 border-white rounded-full ${
+            className={`w-3 h-3 md:w-4 md:h-4 border-2 border-white rounded-full ${
               checkVal.number ? "bg-green-600" : ""
             }`}
           ></div>
